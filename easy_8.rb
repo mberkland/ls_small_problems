@@ -220,7 +220,7 @@ def center_of(phrase)
   if phrase.length % 2 == 1
     phrase[center]
   else
-    phrase[center-1..center]
+    phrase.values_at(center-1, center)
   end
 end
 
