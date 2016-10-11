@@ -278,3 +278,66 @@ end
 
 word_to_digit('Please call me at five five five one two three four. Thanks.')
 # == 'Please call me at 5 5 5 1 2 3 4. Thanks.'
+
+# Question 8
+# Write a recursive method that computes the nth Fibonacci number, where nth is
+# an argument to the method.
+
+def fibonacci(num)
+  if num < 2
+    num
+  else
+    fibonacci(num - 1) + fibonacci(num - 2)
+  end
+end
+
+p fibonacci(1) # == 1
+p fibonacci(2) # == 1
+p fibonacci(3) # == 2
+p fibonacci(4) # == 3
+p fibonacci(5) # == 5
+p fibonacci(12) # == 144
+p fibonacci(20) # == 6765
+
+# Question 9
+# Rewrite your recursive fibonacci method so that it computes its results
+# without recursion.
+
+def fibonacci2(num)
+  total = 0
+  count = 2
+  first_num = 1
+  second_num = 1
+  loop do
+    total = first_num + second_num
+    first_num = second_num
+    second_num = total
+    count += 1
+    break if count == num
+  end
+  total
+end
+
+p fibonacci2(20) # == 6765
+p fibonacci2(100) # == 354224848179261915075
+# p fibonacci2(100_001) # => 4202692702.....8285979669707537501
+
+# Qustion 10
+# In the previous exercise, we developed a procedural method for computing the
+# value of the nth Fibonacci numbers. This method was really fast, computing the
+# 20899 digit 100,001st Fibonacci sequence almost instantly.
+
+# In this exercise, you are going to compute a method that returns the last
+# digit of the nth Fibonacci number.
+
+def fibonacci_last(num)
+  total = fibonacci2(num)
+  total.to_s[-1].to_i
+end
+
+p fibonacci_last(15)        # -> 0  (the 15th Fibonacci number is 610)
+p fibonacci_last(20)        # -> 5 (the 20th Fibonacci number is 6765)
+p fibonacci_last(100)       # -> 5 (the 100th Fibonacci number is 354224848179261915075)
+p fibonacci_last(100_001)   # -> 1 (this is a 20899 digit number)
+p fibonacci_last(1_000_007) # -> 3 (this is a 208989 digit number)
+# fibonacci_last(123456789) # -> 4
