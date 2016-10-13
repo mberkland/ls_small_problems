@@ -1,0 +1,4 @@
+The sleepy %{adjective} %{noun} %{adverb}
+%{verb} at the %{adjective} yellow
+dog, who %{adverb} %{verb} his
+%{noun} and %{verb} around.
