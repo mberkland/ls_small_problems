@@ -23,3 +23,67 @@ File.open("madlibs.txt").readlines.each do |line|
                         adverb: ADVERB.sample,
                         adjective: ADJECTIVE.sample)
 end
+
+# Question 2
+# Write a method that displays an 8-pointed star in an nxn grid, where n is an
+# odd integer that is supplied as an argument to the method. The smallest such
+# star you need to handle is a 7x7 grid.
+
+def star(odd_int)
+  number_of_lines = (odd_int - 7) / 2 + 2
+  num_range = (1..number_of_lines).to_a
+  num_range.reverse_each do |num|
+    puts "#{"*"}#{" " * num}#{"*"}#{" " * num}#{"*"}".center(odd_int)
+  end
+  puts "#{"*" * 3}".center(odd_int)
+  puts "#{"*" * odd_int}"
+  puts "#{"*" * 3}".center(odd_int)
+  num_range.each do |num|
+    puts "#{"*"}#{" " * num}#{"*"}#{" " * num}#{"*"}".center(odd_int)
+  end
+end
+
+puts " "
+star(7)
+puts " "
+star(15)
+
+# for star(7)
+# *  *  *
+#  * * *
+#   ***
+# *******
+#   ***
+# * * *
+# *  *  *
+
+# Question 3
+# Write a method that takes a 3 x 3 matrix in Array of Arrays format and returns
+# the transpose of the original matrix. Note that there is a Array#transpose
+# method that does this -- you may not use it for this exercise. You also are
+# not allowed to use the Matrix class from the standard library. Your task is to
+# do this yourself.
+
+# Take care not to modify the original matrix: you must produce a new matrix and
+# leave the original matrix unchanged.
+
+matrix = [
+  [1, 5, 8],
+  [4, 7, 2],
+  [3, 9, 6]
+]
+
+
+def transpose(matrix)
+  index_arr = [0, 1, 2]
+  new_matrix = []
+  index_arr.each do |index|
+    new_matrix.push([matrix[0][index], matrix[1][index], matrix[2][index]])
+  end
+  p new_matrix
+end
+
+new_matrix = transpose(matrix)
+
+p new_matrix == [[1, 4, 3], [5, 7, 9], [8, 2, 6]]
+p matrix == [[1, 5, 8], [4, 7, 2], [3, 9, 6]]
